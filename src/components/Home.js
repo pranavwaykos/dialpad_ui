@@ -70,8 +70,8 @@ const Home = () => {
   const fetchContactData = async () => {
     try {
       let response = await customerservices.get_contact_list();
-      if(response){
-      setData(response.items);
+      if(response != null){
+      setData(response);
       }
     } catch (error) {}
   };

@@ -7,7 +7,6 @@ function ContactForm({ onSubmit, onClose, initialValues,isEdit}) {
   const [contact, setContact] = useState({
     first_name: "",
     last_name: "",
-    company_name: "",
     emails: [""],
     phones: [""],
   });
@@ -26,7 +25,7 @@ function ContactForm({ onSubmit, onClose, initialValues,isEdit}) {
       setContact({
         first_name: initialValues.first_name || "",
         last_name: initialValues.last_name || "",
-        company_name: initialValues.company_name || "",
+        // company_name: initialValues.company_name || "",
         emails: initialValues.emails || [""],
         phones: initialValues.phones || [""],
       });
@@ -54,7 +53,7 @@ function ContactForm({ onSubmit, onClose, initialValues,isEdit}) {
         onChange={handleChange}
       />
 
-      <TextField
+      {/* <TextField
         label="Company"
         variant="outlined"
         fullWidth
@@ -62,7 +61,7 @@ function ContactForm({ onSubmit, onClose, initialValues,isEdit}) {
         name="company_name"
         value={contact.company_name}
         onChange={handleChange}
-      />
+      /> */}
 
       <TextField
         label="Email"

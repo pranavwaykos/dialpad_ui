@@ -5,10 +5,12 @@ class customerService extends BaseService {
   async create_contact(contactData) {
     try {
       const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
+        "Content-Type": "application/json"
       };
-      return await this.fetcher.post("", contactData, { headers: headers });
+      let data = contactData
+      data.emails = [contactData.emails]
+      data.phones = [contactData.phones]
+      return await this.fetcher.post("/add_contact", contactData, { headers: headers });
     } catch (error) {
       return error;
     }
@@ -23,7 +25,7 @@ class customerService extends BaseService {
         apikey: API_KEY,
       };
       const UrPparams = new URLSearchParams(params);
-      return await this.fetcher.get(`?${UrPparams}`, {
+      return await this.fetcher.get(`/list`, {
         headers: headers,
       });
     } catch (error) {
@@ -40,7 +42,7 @@ class customerService extends BaseService {
         apikey: API_KEY,
       };
       const UrPparams = new URLSearchParams(params);
-      return await this.fetcher.delete(`${contactId}?${UrPparams}`, {
+      return await this.fetcher.delete(`/delete/${contactId}`, {
         headers: headers,
       });
     } catch (error) {
@@ -53,11 +55,7 @@ class customerService extends BaseService {
       const headers = {
         "Content-Type": "application/json",
       };
-      let params = {
-        apikey: API_KEY,
-      };
-      const UrPparams = new URLSearchParams(params);
-      return await this.fetcher.put(`?${UrPparams}`, contactData, {
+      return await this.fetcher.patch(`update/${contactData.uid}`, contactData, {
         headers: headers,
       });
     } catch (error) {
